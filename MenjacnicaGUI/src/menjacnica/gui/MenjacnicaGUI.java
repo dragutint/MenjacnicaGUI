@@ -17,6 +17,8 @@ import javax.swing.JFileChooser;
 import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
@@ -54,6 +56,8 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmAbout;
 	private JSeparator separator;
 	private JTextArea textAreaStatus;
+	
+	private MenjacnicaGUI mg;
 
 	/**
 	 * Launch the application.
@@ -94,6 +98,8 @@ public class MenjacnicaGUI extends JFrame {
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.EAST);
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
+		
+		this.mg = this;
 	}
 	
 	private void izlaz() {
@@ -155,6 +161,12 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnDodajKurs() {
 		if (btnDodajKurs == null) {
 			btnDodajKurs = new JButton("Dodaj kurs");
+			btnDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DodajKursGUI dkg = new DodajKursGUI(mg);
+					dkg.setVisible(true);
+				}
+			});
 			btnDodajKurs.setPreferredSize(new Dimension(111, 25));
 		}
 		return btnDodajKurs;
@@ -291,5 +303,9 @@ public class MenjacnicaGUI extends JFrame {
 			textAreaStatus = new JTextArea();
 		}
 		return textAreaStatus;
+	}
+	
+	public void prikaziSveKnjige(String txt) {
+		textAreaStatus.setText( textAreaStatus.getText() + "\n" + txt);
 	}
 }
