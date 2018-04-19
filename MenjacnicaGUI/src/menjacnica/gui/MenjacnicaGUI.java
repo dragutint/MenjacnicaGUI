@@ -89,7 +89,7 @@ public class MenjacnicaGUI extends JFrame {
 				Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/menjacnica/gui/exchange.png")));
 		setTitle("Menja\u010Dnica");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 771, 469);
+		setBounds(100, 100, 771, 372);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -171,10 +171,16 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return btnDodajKurs;
 	}
-
+	
 	private JButton getBtnObrisiKurs() {
 		if (btnObrisiKurs == null) {
 			btnObrisiKurs = new JButton("Obrisi kurs");
+			btnObrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ObrisiKursGUI okg = new ObrisiKursGUI(mg);
+					okg.setVisible(true);
+				}
+			});
 			btnObrisiKurs.setPreferredSize(new Dimension(111, 25));
 		}
 		return btnObrisiKurs;
@@ -203,6 +209,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
+			panel_1.setAutoscrolls(true);
 			panel_1.setPreferredSize(new Dimension(10, 70));
 			panel_1.setBorder(new TitledBorder(null, "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel_1.setLayout(new BorderLayout(0, 0));
@@ -305,7 +312,7 @@ public class MenjacnicaGUI extends JFrame {
 		return textAreaStatus;
 	}
 	
-	public void prikaziSveKnjige(String txt) {
-		textAreaStatus.setText( textAreaStatus.getText() + "\n" + txt);
+	public void dodajTekst(String txt) {
+		textAreaStatus.setText( textAreaStatus.getText() + txt + "\n");
 	}
 }
